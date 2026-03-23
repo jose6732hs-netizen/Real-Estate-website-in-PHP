@@ -12,35 +12,29 @@
     "prisma:push": "prisma db push"
   },
   "dependencies": {
-    "react": "^19.0.0-rc-66f6e91e-20240927",
-    "react-dom": "^19.0.0-rc-66f6e91e-20240927",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "next": "^15.0.0",
     "@hookform/resolvers": "^3.3.4",
     "react-hook-form": "^7.50.0",
-    "@prisma/client": "^6.0.1",
+    "@prisma/client": "^5.8.0",
     "zod": "^3.22.4",
-    "@tanstack/react-query": "^5.36.2",
-    "next-auth": "^5.0.0-beta.20",
     "bcryptjs": "^2.4.3",
     "axios": "^1.6.5",
     "clsx": "^2.0.0",
     "tailwind-merge": "^2.3.0",
     "class-variance-authority": "^0.7.0",
-    "@radix-ui/react-slot": "^2.0.2",
-    "lucide-react": "^0.344.0",
-    "recharts": "^2.10.3",
-    "framer-motion": "^10.16.16"
+    "lucide-react": "^0.344.0"
   },
   "devDependencies": {
     "typescript": "^5",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@types/bcryptjs": "^2.4.6",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.1",
-    "prisma": "^6.0.1",
-    "@types/next-auth": "^3.15.0"
+    "prisma": "^5.8.0"
   }
 }
