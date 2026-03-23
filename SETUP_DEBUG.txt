@@ -1,0 +1,34 @@
+NEXT.JS PREVIEW SETUP - INSTRUÇÕES RÁPIDAS
+
+✅ JÁ CRIADO:
+- Estrutura completa Next.js 15
+- TypeScript com strict mode
+- Tailwind CSS + PostCSS
+- Componentes shadcn/ui
+- Schema Prisma
+- Homepage modernizada
+- Páginas de auth (login/register)
+- Página de propriedades
+- Arquivo .env.local
+
+❌ PROBLEMA:
+O preview pode não estar funcionando porque:
+1. As dependências estão sendo instaladas (node_modules/)
+2. Next.js está compilando TypeScript
+3. Falta alguma variável de ambiente
+
+✅ SOLUÇÃO:
+1. Aguarde alguns segundos para as dependências serem instaladas
+2. O preview deve iniciar automaticamente (http://localhost:3000)
+3. Se não aparecer, recarregue a página (F5 ou Cmd+R)
+
+Se continuar com erro, CLIQUE AQUI para abrir uma view com detalhes do erro:
+- Clique em "Open Preview" no canto superior direito do v0
+- Verifique a aba "Console" (F12 ou Cmd+Shift+I)
+- Copie o erro e me envie
+
+ALTERNATIVA DE DEBUG:
+Se quiser, você também pode:
+1. Ir para Settings (engrenagem, canto superior direito)
+2. Clicar em "Vars"
+3. Verificar se DATABASE_URL está vazia (ok para preview)
