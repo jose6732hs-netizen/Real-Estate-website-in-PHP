@@ -1,0 +1,142 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// User Model - represents admin users
+model Admin {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("admin")
+}
+
+// User Model - represents regular users and property owners
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String    @unique
+  password      String
+  phoneNumber   String?
+  address       String?
+  city          String?
+  state         String?
+  postalCode    String?
+  userType      String?   // "user", "agent", "builder"
+  profileImage  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  properties    Property[]
+
+  @@map("user")
+}
+
+// State Model
+model State {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  cities    City[]
+
+  @@map("state")
+}
+
+// City Model
+model City {
+  id        Int       @id @default(autoincrement())
+  name      String
+  stateId   Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  state     State     @relation(fields: [stateId], references: [id], onDelete: Cascade)
+  properties Property[]
+
+  @@unique([name, stateId])
+  @@index([stateId])
+  @@map("city")
+}
+
+// Property Model
+model Property {
+  id            Int       @id @default(autoincrement())
+  title         String
+  description   String    @db.LongText
+  price         Float
+  propertyType  String    // "apartment", "house", "villa", "office"
+  status        String    // "for_rent", "for_sale"
+  bedrooms      Int
+  bathrooms     Int
+  kitchens      Int
+  balconies     Int?
+  area          Float?
+  address       String
+  latitude      Float?
+  longitude     Float?
+  cityId        Int
+  userId        Int
+  featuredImage String?
+  images        String?   // JSON array of image URLs
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  city          City      @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  owner         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([cityId])
+  @@index([userId])
+  @@index([status])
+  @@index([propertyType])
+  @@map("property")
+}
+
+// Contact Model
+model Contact {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String
+  message   String    @db.LongText
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("contact")
+}
+
+// Feedback Model
+model Feedback {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String
+  message   String    @db.LongText
+  rating    Int?      // 1-5 star rating
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("feedback")
+}
+
+// About Model
+model About {
+  id        Int       @id @default(autoincrement())
+  title     String
+  content   String    @db.LongText
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("about")
+}
